@@ -1,0 +1,320 @@
+# =================================
+# Expected Protocols
+# =================================
+expected_protocols:
+  20:
+    - TCP
+  21:
+    - TCP
+  22:
+    - TCP
+  23:
+    - TCP
+  25:
+    - TCP
+  53:
+    - UDP
+    - TCP
+  67:
+    - UDP
+  68:
+    - UDP
+  69:
+    - UDP
+  80:
+    - TCP
+  110:
+    - TCP
+  123:
+    - UDP
+  135:
+    - TCP
+    - UDP
+  137:
+    - UDP
+  138:
+    - UDP
+  139:
+    - TCP
+  143:
+    - TCP
+  161:
+    - UDP
+  162:
+    - UDP
+  389:
+    - TCP
+    - UDP
+  443:
+    - TCP
+    - UDP
+  445:
+    - TCP
+  465:
+    - TCP
+  514:
+    - TCP
+    - UDP
+  587:
+    - TCP
+  636:
+    - TCP
+  993:
+    - TCP
+  995:
+    - TCP
+  1433:
+    - TCP
+  1521:
+    - TCP
+  3306:
+    - TCP
+  3389:
+    - TCP
+  5432:
+    - TCP
+  5900:
+    - TCP
+  6379:
+    - TCP
+  8080:
+    - TCP
+  8443:
+    - TCP
+
+
+# =================================
+# Known Service Ports
+# =================================
+known_service_ports:
+  20: "FTP-DATA"
+  21: "FTP"
+  22: "SSH"
+  23: "TELNET"
+  25: "SMTP"
+  53: "DNS"
+  67: "DHCP"
+  68: "DHCP"
+  69: "TFTP"
+  80: "HTTP"
+  110: "POP3"
+  123: "NTP"
+  135: "MS-RPC"
+  137: "NETBIOS-NS"
+  138: "NETBIOS-DGM"
+  139: "NETBIOS-SSN"
+  143: "IMAP"
+  161: "SNMP"
+  162: "SNMP-TRAP"
+  389: "LDAP"
+  443: "HTTPS"
+  445: "SMB"
+  465: "SMTPS"
+  514: "SYSLOG"
+  587: "SMTP"
+  636: "LDAPS"
+  993: "IMAPS"
+  995: "POP3S"
+  1433: "MSSQL"
+  1521: "ORACLE"
+  3306: "MYSQL"
+  3389: "RDP"
+  5432: "POSTGRESQL"
+  5900: "VNC"
+  6379: "REDIS"
+  8080: "HTTP-ALT"
+  8443: "HTTPS-ALT"
+
+
+# =================================
+# High-Risk Ports
+# =================================
+high_risk_ports:
+  - 1337
+  - 4444
+  - 5555
+  - 6666
+  - 31337
+
+
+# =================================
+# Port Scan Configuration
+# =================================
+port_scan:
+  window: 10
+
+  # Scan volume and rate
+  min_unique_ports: 20
+  min_rate: 5.0
+
+  # Response and failure thresholds
+  max_response_ratio: 0.50
+  min_failure_ratio: 0.70
+
+  # Scan behavior
+  min_sequential_ratio: 0.30
+  min_target_concentration: 0.50
+
+  # Detection threshold
+  min_confidence: 60
+
+
+# =================================
+# Unusual Port Configuration
+# =================================
+unusual_port:
+  privileged_port_max: 1023
+
+  # Dynamic/private port range
+  dynamic_port_min: 49152
+  dynamic_port_max: 65535
+
+  # Minimum traffic required for detection
+  min_packets: 3
+
+  # Port frequency thresholds
+  rare_port_max_frequency: 0.01
+  very_rare_port_max_frequency: 0.001
+
+  # Protocol mismatch scoring
+  protocol_mismatch_score: 35
+  unknown_protocol_score: 0
+
+  # Detection threshold
+  min_confidence: 50
+
+
+# =================================
+# SYN Flood Configuration
+# =================================
+syn_flood:
+  window: 10
+
+  # SYN traffic volume and rate
+  min_packets: 100
+  min_rate: 20.0
+
+  # Handshake completion thresholds
+  max_syn_ack_ratio: 0.50
+  max_completion_ratio: 0.30
+  min_half_open_ratio: 0.70
+
+  # Distributed-source threshold
+  min_source_diversity: 10
+
+  # Detection threshold
+  min_confidence: 60
+
+
+# =================================
+# ICMP Flood Configuration
+# =================================
+icmp_flood:
+  window: 10
+
+  # ICMP traffic volume and rate
+  min_packets: 100
+  min_rate: 20.0
+
+  # Request/reply imbalance
+  min_request_reply_ratio: 2.0
+
+  # Distributed-source threshold
+  min_source_diversity: 10
+
+  # Target concentration
+  min_target_concentration: 0.90
+
+  # Burst detection
+  min_burst_score: 60.0
+
+  # Detection threshold
+  min_confidence: 60
+
+
+# =================================
+# ARP Anomaly Configuration
+# =================================
+arp_anomaly:
+  min_mapping_conflicts: 1
+  min_ips_per_mac: 2
+
+  # Gratuitous ARP
+  min_gratuitous_packets: 1
+
+  # Request/reply imbalance
+  request_reply_imbalance: 3.0
+
+  # Broadcast rate
+  broadcast_window: 10
+  min_broadcast_rate: 20.0
+
+  # Detection threshold
+  min_confidence: 60
+
+
+# =================================
+# DNS Query Types
+# =================================
+dns_query_types:
+  1: "A"
+  2: "NS"
+  5: "CNAME"
+  6: "SOA"
+  12: "PTR"
+  15: "MX"
+  16: "TXT"
+  28: "AAAA"
+  33: "SRV"
+  35: "NAPTR"
+  255: "ANY"
+
+
+# =================================
+# DNS Anomaly Configuration
+# =================================
+dns_anomaly:
+  window: 60
+
+  # DNS traffic
+  min_dns_rate: 500.0
+  min_dns_packets: 50
+
+  # DNS queries
+  min_query_rate: 20.0
+  min_query_count: 20
+
+  # Domains
+  min_unique_domain_ratio: 0.30
+
+  # NXDOMAIN
+  min_nxdomain_ratio: 0.20
+
+  # Entropy
+  min_domain_character_entropy: 3.00
+  min_domain_label_entropy: 1.50
+
+  # Domain structure
+  max_normal_label_length: 30
+  min_digit_ratio: 0.10
+
+  # Detection threshold
+  min_confidence: 50
+
+
+# =================================
+# Traffic Rate Configuration
+# =================================
+traffic_rate:
+  window: 10
+
+  # Traffic volume and rate
+  min_packets: 100
+  min_packets_per_second: 20.0
+
+  # Burst thresholds
+  burst_multiplier: 5.0
+  high_burst_multiplier: 10.0
+
+  # Detection threshold
+  min_confidence: 60
