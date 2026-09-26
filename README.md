@@ -302,8 +302,10 @@ This allows the tool to be used for both:
 
 ## Project Structure
 
-<div align="center">
-    <pre style="background: none; border: none; display: inline-block; text-align: left;">
+<table align="center">
+    <tr>
+        <td>
+<pre style="text-align: left;">
 network-traffic-analyzer/
 │
 ├── capture_detection/
@@ -349,8 +351,10 @@ network-traffic-analyzer/
 ├── main.py
 ├── README.md
 └── requirements.txt
-    </pre>
-</div>
+</pre>
+        </td>
+    </tr>
+</table>
 
 ## Testing
 
